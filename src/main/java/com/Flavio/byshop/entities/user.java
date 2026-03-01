@@ -1,16 +1,26 @@
 package com.Flavio.byshop.entities;
 import java.io.Serializable;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 /**
  * Entidade que representa um usuário da aplicação.
  * Implementa {@link Serializable} para que o objeto possa ser
  * convertido em bytes para transmissão ou armazenamento.
  */
+@Entity
+@Table(name = "tb_user") // Especifica o nome da tabela no banco de dados
 public class user implements Serializable{
     private static final long serialVersionUID = 1L; // Identificador para compatibilidade de serialização
 
     // --- campos da entidade -------------------------------------------------
     /** Identificador único do usuário (geralmente usado como PK no BD). */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Configura o ID para ser gerado automaticamente
     private Long id;
     /** Nome completo do usuário. */
     private String name;
