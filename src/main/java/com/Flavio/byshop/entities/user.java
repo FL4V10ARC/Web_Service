@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Entidade que representa um usuário da aplicação.
@@ -32,6 +33,7 @@ public class User implements Serializable{
     private String phone;
     /** Senha (deve ser armazenada como hash). */
     private String password;
+    @JsonIgnore // Ignora a serialização do campo orders para evitar recursão infinita
     /** Lista de pedidos associados ao usuário. */
     @OneToMany(mappedBy = "client") // Define o relacionamento OneToMany com a entidade Order
     private List<Order> orders = new ArrayList<>(); 
