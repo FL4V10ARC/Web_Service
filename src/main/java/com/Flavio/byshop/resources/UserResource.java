@@ -1,5 +1,5 @@
 package com.Flavio.byshop.resources;
-import com.Flavio.byshop.entities.user;
+import com.Flavio.byshop.entities.User;
 import com.Flavio.byshop.services.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ public class UserResource {
     private UserService service;
     
     @GetMapping
-    public ResponseEntity<List<user>> findAll() {
-        List<user> list = service.findAll();
+    public ResponseEntity<List<User>> findAll() {
+        List<User> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
     @GetMapping(value = "/{id}")
-    public ResponseEntity<user> findById(@PathVariable Long id) {
-        user obj = service.findById(id);
+    public ResponseEntity<User> findById(@PathVariable Long id) {
+        User obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 

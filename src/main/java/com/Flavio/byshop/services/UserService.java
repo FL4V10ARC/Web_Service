@@ -1,6 +1,6 @@
 package com.Flavio.byshop.services;
 import com.Flavio.byshop.Repositories.UserRepository;
-import com.Flavio.byshop.entities.user;
+import com.Flavio.byshop.entities.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +11,11 @@ public class UserService {
     @Autowired
     private UserRepository repository;
     
-    public List<user> findAll() {
+    public List<User> findAll() {
         return repository.findAll();
     }
-    public user findById(Long id) {
-            Optional<user> obj = repository.findById(id);
+    public User findById(Long id) {
+            Optional<User> obj = repository.findById(id);
             return obj.get();
     }
 

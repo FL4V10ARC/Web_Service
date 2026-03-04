@@ -1,11 +1,13 @@
 package com.Flavio.byshop.entities;
 import java.io.Serializable;
-
+import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 
 /**
  * Entidade que representa um usuário da aplicação.
@@ -14,7 +16,7 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "tb_user") // Especifica o nome da tabela no banco de dados
-public class user implements Serializable{
+public class User implements Serializable{
     private static final long serialVersionUID = 1L; // Identificador para compatibilidade de serialização
 
     // --- campos da entidade -------------------------------------------------
@@ -30,19 +32,22 @@ public class user implements Serializable{
     private String phone;
     /** Senha (deve ser armazenada como hash). */
     private String password;
+    /** Lista de pedidos associados ao usuário. */
+    @OneToMany(mappedBy = "client") // Define o relacionamento OneToMany com a entidade Order
+    private List<Order> orders = new ArrayList<>(); 
 
     // --- construtores ------------------------------------------------------
     /**
      * Construtor padrão sem parâmetros.
      * Necessário para frameworks como JPA ou Jackson que usam reflexão.
      */
-    public user(){
+    public User(){
     }
 
     /**
      * Construtor com todos os campos.
      */
-    public user(Long id, String name, String email, String phone, String password) {
+    public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -81,7 +86,9 @@ public class user implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
-
+    public List<Order> getOrders() {
+        return orders;
+    }
     // --- identidade de objeto ------------------------------------------------
     @Override
     public int hashCode() {
@@ -100,7 +107,7 @@ public class user implements Serializable{
             return false; // comparando com null
         if (getClass() != obj.getClass())
             return false; // deve ser a mesma classe
-        user other = (user) obj;
+        User other = (User) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
