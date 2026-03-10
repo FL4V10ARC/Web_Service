@@ -62,7 +62,7 @@ Representa as **entidades do sistema** que são mapeadas para tabelas no banco.
 src
  └── main
      └── java
-         └── com.codev.shopby
+         └── com.Flavio.shopby
              ├── controllers
              │
              ├── services
