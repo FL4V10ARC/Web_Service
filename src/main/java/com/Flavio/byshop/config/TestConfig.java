@@ -62,5 +62,13 @@ public class TestConfig implements CommandLineRunner {
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.shipped, u1);
         // salva a lista de pedidos (o1, o2, o3) no repositório — persiste os pedidos no banco de dados
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+        p1.getCategories().add(cat2); // associa o produto p1 à categoria cat2 (Books)
+        p2.getCategories().add(cat1); // associa o produto p2 à categoria cat1 (Electronics)
+        p2.getCategories().add(cat3); // associa o produto p2 à categoria cat3 (Computers)
+        p3.getCategories().add(cat3); // associa o produto p3 à categoria cat3 (Computers)
+        p4.getCategories().add(cat3); // associa o produto p4 à categoria cat3 (Computers)
+        p5.getCategories().add(cat2); // associa o produto p5 à categoria cat2 (Books)
+        // salva as alterações nos produtos (p1, p2, p3, p4, p5) no repositório — persiste as associações entre produtos e categorias no banco de dados
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     }
 }
