@@ -10,7 +10,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import java.util.Set;
 import java.util.HashSet;
-
 // anotação que marca esta classe como uma entidade JPA (mapeada para tabela no banco)
 @Entity
 // define o nome da tabela no banco de dados que corresponde a esta entidade

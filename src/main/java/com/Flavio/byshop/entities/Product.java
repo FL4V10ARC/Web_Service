@@ -12,7 +12,11 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinTable;
+<<<<<<< HEAD
 import jakarta.persistence.JoinColumn;
+=======
+import jakarta.persistence.JoinColumn;  
+>>>>>>> 7cb562544ee4fff0cfa275fc7ba5e5613f0d49a2
 
 // importação para serialização
 import java.io.Serializable;
@@ -46,7 +50,7 @@ public class Product implements Serializable{
 
     // URL da imagem do produto
     private String imgUrl;
-
+    
     // conjunto de categorias associadas a este produto (relacionamento muitos-para-muitos)
     // @ManyToMany indica que um produto pode estar em múltiplas categorias
     //            e uma categoria pode ter múltiplos produtos
