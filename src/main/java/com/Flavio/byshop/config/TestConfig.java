@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Profile;
 import com.Flavio.byshop.Repositories.UserRepository;
 import com.Flavio.byshop.entities.User;
 import com.Flavio.byshop.entities.Order;
+import com.Flavio.byshop.entities.OrderItem;
 import com.Flavio.byshop.entities.Product;
 import com.Flavio.byshop.entities.Category;
 import com.Flavio.byshop.entities.enums.OrderStatus;
@@ -16,6 +17,7 @@ import com.Flavio.byshop.Repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired; 
 import com.Flavio.byshop.Repositories.OrderRepository;
 import com.Flavio.byshop.Repositories.ProductRepository;
+import com.Flavio.byshop.Repositories.OrdemItemRepository;
 
 @Configuration
 @Profile("test") // Esta configuração só será carregada quando o perfil "test" estiver ativo    
@@ -33,6 +35,8 @@ public class TestConfig implements CommandLineRunner {
     // Repositório para gerenciar produtos
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private OrdemItemRepository orderItemRepository;
     // Método executado na inicialização da aplicação para popular o banco com dados de teste
     @Override
     public void run(String... args) throws Exception {
@@ -62,5 +66,11 @@ public class TestConfig implements CommandLineRunner {
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.shipped, u1);
         // salva a lista de pedidos (o1, o2, o3) no repositório — persiste os pedidos no banco de dados
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice()); 
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice()); 
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice()); 
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+        // salva a lista de itens de pedido (oi1, oi2, oi3, oi4) no repositório — persiste os itens de pedido no banco de dados
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
     }
 }
