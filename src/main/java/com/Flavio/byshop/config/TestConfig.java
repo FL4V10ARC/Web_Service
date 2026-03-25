@@ -8,6 +8,7 @@ import com.Flavio.byshop.Repositories.UserRepository;
 import com.Flavio.byshop.entities.User;
 import com.Flavio.byshop.entities.Order;
 import com.Flavio.byshop.entities.OrderItem;
+import com.Flavio.byshop.entities.Payment;
 import com.Flavio.byshop.entities.Product;
 import com.Flavio.byshop.entities.Category;
 import com.Flavio.byshop.entities.enums.OrderStatus;
@@ -72,5 +73,9 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
         // salva a lista de itens de pedido (oi1, oi2, oi3, oi4) no repositório — persiste os itens de pedido no banco de dados
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+        // cria uma instância de pagamento associada ao pedido o1, com id nulo (será gerado automaticamente) e instante do pagamento
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+        o1.setPayment(pay1);
+        orderRepository.save(o1);
     }
 }
