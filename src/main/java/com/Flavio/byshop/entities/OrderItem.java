@@ -60,6 +60,10 @@ public class OrderItem implements java.io.Serializable {
         this.price = price;
     }
 
+    public Double getSubTotal() {
+        return price * quantity;
+    }
+
     public int hashCode() {
         final int prime = 31;
         int result = 1;
